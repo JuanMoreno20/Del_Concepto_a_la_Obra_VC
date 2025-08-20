@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Del Concepto a la Obra</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+<style>
+    /* Fuentes locales */
+    @font-face {
+        font-family: 'BlackMangoExtraBold';
+        src: url('fronts/BlackMango-ExtraBold.otf') format('opentype');
+        font-weight: 800;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'BlackMangoLight';
+        src: url('fronts/BlackMango-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    :root {
+        --beige: #f5eee7;
+        --oscuro: #1f3a06;
+        --verde: #a3a478;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--oscuro);
+        color: var(--beige);
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.6;
+    }
+
+    /* Botón menú */
+    .menu-btn {
+        background: none;
+        border: none;
+        color: var(--beige);
+        font-size: 2rem;
+        cursor: pointer;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1100;
+    }
+
+    /* Menú lateral */
+    nav.menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 270px;
+        height: 100%;
+        background: #1c3703;
+        padding: 1rem;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        z-index: 1050;
+    }
+    nav.menu.open { transform: translateX(0); }
+
+    nav.menu a {
+        display: block;
+        color: var(--beige);
+        padding: 0.5rem 0;
+        text-decoration: none;
+        font-family: 'BlackMangoLight', 'Montserrat', sans-serif;
+    }
+    nav.menu a:hover { background: #7aa98e; }
+
+    /* Encabezado menú */
+    .menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .menu-header button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--beige);
+        cursor: pointer;
+    }
+
+    /* Contenedor pasos */
+    .step-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+        display: none;
+        text-align: center;
+    }
+    .step-container.active { display: block; }
+    .step-container h2 {
+        font-family: 'BlackMangoExtraBold', 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .step-container h3 {
+        font-family: 'BlackMangoLight', 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        color: var(--verde);
+        text-align: center;
+    }
+    .step-container p,
+    .step-container ul,
+    .step-container li {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Contenido con ancho limitado */
+    .paso-contenido {
+        max-width: 40ch;      /* ancho controlado */
+        margin: 0 auto;       /* centrado */
+        text-align: justify;  /* justificado */
+    }
+
+    .step-container ul { 
+        list-style: disc; 
+        padding-left: 1.5rem; 
+        text-align: left;
+    }
+
+    /* Botones */
+    .btn {
+        display: inline-block;
+        background: var(--verde);
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 1rem 0.5rem 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Botón siguiente paso en beige con letra verde */
+    .btn-next { 
+        background: var(--beige); 
+        color: var(--oscuro); 
+        font-weight: bold;
+    }
+
+    /* Portada */
+    .portada {
+        padding: 5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--oscuro);
+    }
+    .portada img { max-width: 50%; height: auto; display: block; }
+
+    /* Texto inicial */
+    .texto {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+    }
+    .texto h1 {
+        font-family: 'BlackMangoExtraBold', 'Montserrat', sans-serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .texto h2 {
+        font-family: 'BlackMangoLight', 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--verde);
+        text-align: center;
+    }
+    .texto p {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+</style>
+</head>
+<body>
+
+<!-- Botón de menú -->
+<button class="menu-btn">&#9776;</button>
+
+<!-- Portada -->
+<section class="portada" id="intro">
+    <img src="Imagenes/LOGO DEL CONCEPTO A LA OBRA.png" alt="Del Concepto a la Obra">
+</section>
+
+<!-- Texto descriptivo --> <section class="texto" id="intro-texto"> <h1>Diseñar También es un proceso</h1> 
+    <p>Esta guía nace de la necesidad de ofrecer una estructura clara y funcional para el desarrollo de proyectos de diseño interior, pensada especialmente para microempresas que buscan fortalecer su operación sin perder su esencia creativa.</p>
+    <p>Del concepto a la obra propone una hoja de ruta que no solo organiza el proceso de diseño, sino que también lo vuelve más comprensible, colaborativo y eficiente. A través de herramientas visuales, cuestionarios prácticos, diagramas funcionales y recursos aplicables, esta guía facilita la toma de decisiones, mejora la comunicación con el cliente y permite una mayor claridad en cada etapa del trabajo.</p>
+    <p>Más que un instructivo, esta es una herramienta de autogestión que invita a repensar la manera en que las ideas se convierten en proyectos ejecutados, poniendo en valor tanto el conocimiento técnico como la experiencia del cliente.</p> <h2>¿A quién está dirigida?</h2> <p>A diseñadores independientes, equipos creativos pequeños y microempresas de diseño interior que buscan organizar sus procesos, mejorar su calidad de servicio y proyectar una identidad profesional sólida y coherente.</p> <h2>¿Cómo usar esta guía?</h2> <p>Cada sección de esta cartilla está pensada para acompañar paso a paso el proceso de diseño, desde el primer contacto con el cliente hasta la entrega final del proyecto. Puedes usarla como plantilla base, como mapa de verificación o como punto de partida para construir tus propios estándares operativos.</p> <p>Esta guía es tan flexible como lo es tu creatividad: adapta, transforma y evoluciona cada herramienta según las particularidades de tu empresa y los proyectos que desarrolles.</p> </section>
+
+<!-- Menú lateral -->
+<nav class="menu" id="menu">
+    <div class="menu-header">
+        <span></span>
+        <button id="closeMenu">&times;</button>
+    </div>
+    <a href="#" id="volverInicio">Inicio</a>
+    <a href="#paso1">Organigrama funcional</a>
+    <a href="#paso2">Planificación operativa</a>
+    <a href="#paso3">Priorización y gestión de recursos</a>
+    <a href="#paso4">Presupuesto claro para el cliente</a>
+    <a href="#paso5">Hoja de Ruta operativa</a>
+    <a href="#paso6">Ficha de cierre de proyecto</a>
+    <a href="#paso7">Actas de Inicio y de Entrega</a>
+</nav>
+
+<!-- Contenedor pasos -->
+<div id="stepContainer" class="step-container"></div>
+
+<script>
+    const menuBtn = document.querySelector(".menu-btn");
+    const closeMenuBtn = document.getElementById("closeMenu");
+    const menu = document.getElementById("menu");
+    const intro = document.getElementById("intro");
+    const introTexto = document.getElementById("intro-texto");
+    const stepContainer = document.getElementById("stepContainer");
+    const volverInicio = document.getElementById("volverInicio");
+
+    const pasos = {
+        paso1: { titulo: "Organigrama funcional", 
+        proposito: "Te ayuda a clarificar quién decide, quién coordina y quién ejecuta en cada etapa de los proyectos en la empresa. Evita vacíos de responsabilidad y mejora la comunicación con tu red de contratistas y proveedores.", 
+        queEncontraras: "Estructura en secciones que especifican los roles y las áreas de la empresa", 
+        comoUsarla: ["Define los roles actuales del equipo.","Asigna un responsable principal por rol y su función."], 
+        buenasPracticas: ["Actualiza el organigrama cuando entre/salga un colaborador."],
+            documentos: ["Documentos/1. ORGANIGRAMA FUNCIONAL.xlsx"]
+        },
+        paso2: { titulo: "Planificación operativa", 
+        proposito: "Es tu tablero de control: conecta fases, tareas, responsables, fechas y avances. Facilita revisiones semanales cortas y decisiones a tiempo.", 
+        queEncontraras: ["Columnas para fase, tarea, responsable, fecha límite, estado y observaciones.", "Campo de observaciones para anotar acuerdos y ajustes." ], 
+        comoUsarla: ["Crea el encabezado del proyecto (cliente y periodo estimado).","Establece la fase activa en cada recuadro." , "Desglosa cada fase en tareas concretas con un solo responsable.", "Define fechas límite realistas.", "Actualiza estados: Iniciando / En progreso / Pendiente / Finalizado.", "Revisa semanalmente (15–30 min) y reprograma cuando sea necesario."], 
+        buenasPracticas: ["Evita tareas ambiguas; escribe verbos de acción (Ej, “Emitir planos MEP v2”)."],
+            documentos: ["Documentos/2. PLANTILLA CONTROL DE PROYECTOS - 001.xlsx"]
+        },
+        paso3: { titulo: "Priorización y gestión de recursos", 
+        proposito: "Identifica los recursos clave (personas, proveedores, materiales, licencias) y establece su criticidad, disponibilidad y plan alterno. Reduce riesgos operativos.", 
+        queEncontraras: ["Campos para tipo de recurso (interno/externo), esencialidad y nivel de confianza.","Espacio para observaciones (riesgos, desempeño según proyecto y soluciones)"], 
+        comoUsarla: ["Lista los recursos del proyecto.","Indica el tipo y la esencialidad de cada recurso.", "Registra el nivel de confianza que tiene el recurso.", "Anota las observaciones según el desempeño del recursos en el proyecto."], 
+        buenasPracticas: ["Documenta de manera recurrente los recursos, para generar trayectoria y trazabilidad."],
+            documentos: ["Documentos/3. PIORIZACIÓN Y GESTIÓN DE RECURSOS.xlsx"]
+        },
+        paso4: { titulo: "Presupuesto claro para el cliente (Cotización)", 
+        proposito: "Ayuda a plantear el alcance, la ejecución y los costos de manera detallada. Facilita la aprobación, las compras y la coordinación con el cronograma.", 
+        queEncontraras: ["Un encabezado en donde incluyes los datos de la empresa y del cliente, la fecha de emisión y los detalles generales de la cotización.", "En los ítems del proyecto, debes presentar cada aspecto con su descripción, imagen de referencia, el equipo responsable de la ejecución, las especificaciones generales, la cantidad de unidades requeridas, la unidad de medida, el precio por unidad y el valor total." , "Una sección de márgenes en donde registras el valor cotizado por el proveedor y el valor presentado a la empresa, especificando la diferencia correspondiente al margen aplicado (en caso de requerirse).", "Las condiciones comerciales en donde detallas las formas de pago, tiempos de entrega, vigencia de la cotización y garantías ofrecidas. Asimismo, debes aclarar de manera explícita las exclusiones o aspectos no contemplados en el alcance de la cotización."], 
+        comoUsarla: ["Completa el encabezado: incluye datos de la empresa, cliente y referencias del proyecto","Describe cada ítem: adjunta imagen de referencia, medidas generales y unidad correspondiente (UND, m², m)." , "Define precios unitarios: registra el valor por unidad, se generará el total y añada observaciones si aplica.", "Gestiona márgenes: diligencie el margen correspondiente en cada ítem.", "Establece condiciones: específica anticipos, plazos de entrega, garantías y exclusiones"], 
+        buenasPracticas: ["Te recomiendo separar por categoría cada plantilla, lo que facilita el entendimiento."],
+            documentos: ["Documentos/5. COT-2025-001 PROYECTO CASA 001.xlsx"]
+        },
+        paso5: { titulo: "Hoja de Ruta operativa (Cronograma + Gantt)", 
+        proposito: "Esta planifica la ejecución con duraciones, dependencias y responsables. Visualiza el avance con un diagrama de Gantt y anticipa cuellos de botella.", 
+        queEncontraras: ["Datos de planificación: fase, actividad, responsables, observaciones", "Tiempos: fecha de inicio, duración (días) y fecha de fin.", "Seguimiento visual: barra de Gantt y calendario mensual para ubicar las actividades."], comoUsarla: ["Identifica la fase de ejecución del proyecto del menú desplegable","Registra la actividad específica a ejecutar.", "Selecciona la fecha de inicio, de finalización, la duración estimada en días y los responsables asignados.", "En la barra de Gantt escribe el mes/ meses en los que se desarrolla el proyecto y marca la duración proyectada en la línea de tiempo. Utiliza diferentes colores para diferenciar fases o estados", "Registra comentarios, ajustes o incidencias relevantes"], 
+        buenasPracticas: ["Actualiza constantemente el archivo para tener un mejor monitoreo"],
+            documentos: ["Documentos/6. HOJA DE RUTA OPERATIVA Y CRONOGRAMA DE GANTT - 001.xlsx"]
+        },
+        paso6: { titulo: "Ficha de cierre de proyecto", 
+        proposito: "Esta plantilla consolida lecciones aprendidas, tiempos reales y recomendaciones. Fortalece la mejora continua y prepara el terreno para futuros proyectos.", 
+        queEncontraras: ["Datos básicos del proyecto y fechas de cierre", "Secciones para logros, problemas, soluciones y mejoras propuestas.", "Resumen de la experiencia del cliente y evidencias" ], 
+        comoUsarla: ["Registra datos generales y etapas completadas.","Describe logros y dificultades con ejemplos concretos." , "Anota soluciones aplicadas y qué harías distinto la próxima vez."], 
+        buenasPracticas: ["Sé concreto e intenta resumir para poder enfocar mejor las oportunidades de mejora."],
+            documentos: ["Documentos/7. FICHA DE CIERRE DE PROYECTO - 001.xlsx"]
+        },
+        paso7: { titulo: "Actas de Inicio y de Entrega (dos archivos)", 
+        proposito: "Formaliza acuerdos y condiciones al inicio, y documenta la conformidad y garantías al cierre. Asegura trazabilidad del proyecto.", 
+        queEncontraras: ["Este formato está diseñado para garantizar el cumplimiento de los lineamientos contractuales y se estructura en cuatro apartados principales:", "Los datos del contratante y del diseñador/a, según lo establecido en el contrato.", "La descripción del proyecto, la duración y los plazos de ejecución acordados.", "Los aspectos financieros, las responsabilidades de cada parte y los documentos adjuntos pertinentes.", "El cierre, que integra la aceptación formal, observaciones relevantes y las firmas que respaldan el acuerdo"], 
+        comoUsarla: ["Después de la firma del contrato, diligencia el acta de inicio con la información especificada en el contrato.","En la finalización y en la pre entrega del proyecto, completa el acta de cierre, teniendo en cuenta que en esta debes incluir la cotización en donde se registra lo entregado al final del proyecto."], 
+        buenasPracticas: ["Emplea las actas en los proyectos según sus etapas (Inicio, Preentrega y Finalización."],
+            documentos: ["Documentos/8. ACTA DE INICIO - PROYECTO  001.docx","Documentos/8. ACTA DE ENTREGA_PREENTREGA- PROYECTO  001.docx"]
+        }
+    };
+
+    function mostrarPaso(hash) {
+        const paso = hash.replace("#", "");
+        if (paso && pasos[paso]) {
+            intro.style.display = "none";
+            introTexto.style.display = "none";
+            stepContainer.classList.add("active");
+
+            let botonesDescarga = "";
+            if (pasos[paso].documentos.length > 0) {
+            if (paso === "paso7") {
+                botonesDescarga += `
+                    <p><strong>Acta de Inicio</strong></p>
+                    <a href="${pasos[paso].documentos[0]}" class="btn" target="_blank" download>Descargar</a>
+                    <p><strong>Acta de Entrega / Preentrega</strong></p>
+                    <a href="${pasos[paso].documentos[1]}" class="btn" target="_blank" download>Descargar</a>
+                `;
+            } else {
+                pasos[paso].documentos.forEach((doc) => {
+                    botonesDescarga += `<a href="${doc}" class="btn" target="_blank" download>Descargar</a> `;
+                });
+            }
+        }
+
+
+            let comoUsarlaHTML = pasos[paso].comoUsarla.length > 0 
+                ? `<h3>Cómo usarla (pasos rápidos)</h3><ul>${pasos[paso].comoUsarla.map(item => `<li>${item}</li>`).join("")}</ul>` 
+                : "";
+
+            let buenasPracticasHTML = pasos[paso].buenasPracticas.length > 0 
+                ? `<h3>Buenas prácticas</h3><ul>${pasos[paso].buenasPracticas.map(item => `<li>${item}</li>`).join("")}</ul>` 
+                : "";
+
+            stepContainer.innerHTML = `
+                <h2>${pasos[paso].titulo}</h2>
+                <div class="paso-contenido">
+                    ${pasos[paso].proposito ? `<p>${pasos[paso].proposito}</p>` : ""}
+                    ${pasos[paso].queEncontraras ? `<h3>Qué encontrarás</h3><p>${pasos[paso].queEncontraras}</p>` : ""}
+                    ${comoUsarlaHTML}
+                    ${buenasPracticasHTML}
+                    ${botonesDescarga}
+                    ${paso !== "paso7" ? `<a href="#paso${parseInt(paso.replace("paso",""))+1}" class="btn btn-next">Siguiente paso ➝</a>` : ""}
+                </div>
+            `;
+        } else {
+            intro.style.display = "flex";
+            introTexto.style.display = "block";
+            stepContainer.classList.remove("active");
+            stepContainer.innerHTML = "";
+        }
+        menu.classList.remove("open");
+    }
+
+    menuBtn.addEventListener("click", () => menu.classList.add("open"));
+    closeMenuBtn.addEventListener("click", () => menu.classList.remove("open"));
+    volverInicio.addEventListener("click", (e) => { e.preventDefault(); window.location.hash = ""; mostrarPaso(""); });
+    window.addEventListener("load", () => mostrarPaso(window.location.hash));
+    window.addEventListener("hashchange", () => mostrarPaso(window.location.hash));
+</script>
+</body>
+</html>
